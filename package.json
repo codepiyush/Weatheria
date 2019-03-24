@@ -5,6 +5,7 @@
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-google-maps": "^9.4.5",
     "react-scripts": "2.1.8"
   },
   "scripts": {
@@ -21,5 +22,18 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codepiyush/Weatheria.git"
+  },
+  "author": "codepiyush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codepiyush/Weatheria/issues"
+  },
+  "homepage": "https://github.com/codepiyush/Weatheria#readme"
 }

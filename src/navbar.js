@@ -8,7 +8,6 @@ class Navbar extends React.Component {
             country: ""
         }
         this.handelChange=this.handelChange.bind(this);
-        this.buttonClick=this.buttonClick.bind(this);
     }
 
     handelChange(event){
@@ -16,9 +15,7 @@ class Navbar extends React.Component {
                     [event.target.name]:event.target.value
         })
     }
-    buttonClick() {
-        console.log(this.state.city, this.state.country)
-    }
+
 
     render() {
         return (
@@ -35,7 +32,7 @@ class Navbar extends React.Component {
                     <input type="text" name="city" placeholder='City' onChange={this.handelChange}/>
                     <input type="text" name="country" placeholder='Country' onChange={this.handelChange}/>
                     <button id="search" onClick={() => this.props.handelClick(this.state.city, this.state.country)}>Search</button>
-                    <button id="gps" onClick={this.props.handelGps}><img src={require("./images/gps.png")} alt="gps" height={40} wedth={40}></img></button>
+                    <button id="gps" onClick={this.props.handelGps}><img src={require("./images/gps.png")} alt="gps" height={40} ></img></button>
                 </div>
             </div>
         )
