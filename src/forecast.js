@@ -42,7 +42,7 @@ class Forecast1 extends React.Component {
                             <p>Low</p><p>{temperatureLow}</p>
                         </div>
                     </div>
-                    <img src={require("./images/" + icon + ".png")} alt="icon" height={30} widht={30} />
+                    <img src={require("./images/" + icon + ".png")} alt="icon" id="ficon" height={30} widht={30} />
                     <p>Humidity :  <span>{Math.round(humidity * 100)}</span>%</p>
                     <p>Pressure:   <span>{pressure}</span> pa</p>
                     <p>Visibility: <span>{visibility}</span></p>

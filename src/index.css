@@ -155,7 +155,7 @@
     font-size: 20px;
     margin: 10px;
     max-width: 180px;
-    box-shadow: 0 4px 8px 0 rgba(155, 38, 38, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+    
 }
 #fcard>div{
     padding: 10px;
@@ -164,7 +164,9 @@
     display: flex;
     justify-content: space-between;
 }
-
+#ficon{
+    text-align: center;
+}
 /*Loader*/
 .spinner {
     margin: 100px auto;

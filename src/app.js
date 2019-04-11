@@ -46,7 +46,7 @@ class App extends Component {
     }
 
     getadd() {
-        fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.state.currLat + "," + this.state.currLong + "&key=AIzaSyCf0HtJT5cs0kv7IKcMgGTfEidQ-BnN8qo")
+        fetch("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + this.state.currLat + "," + this.state.currLong + "&key=AIzaSyAuot4eH_biNsh-pXugBKDhEtQHP13u_oQ")
             .then(res => res.json())
             .then(data => {
                 this.setState({ city: data.results[data.results.length - 3].address_components[0].long_name, country: data.results[data.results.length - 3].address_components[2].long_name })
@@ -92,13 +92,16 @@ class App extends Component {
             .then(res => res.json())
             .then(data => {
                 //console.log(data);
-                this.setState({ weather_data: data, isloading: false })
+                this.setState({ weather_data: data,
+                     isloading: false,
+                     currforecast: data.daily.data
+                    })
             })
     }
 
     handelClick(city, country) {
         this.setState({ isCordFetched: false, isloading: true });
-        fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + city + "," + country + "&key=AIzaSyCf0HtJT5cs0kv7IKcMgGTfEidQ-BnN8qo")
+        fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + city + "," + country + "&key=AIzaSyAuot4eH_biNsh-pXugBKDhEtQHP13u_oQ")
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -188,7 +191,7 @@ class App extends Component {
                         <div id="mapsec">
                             <MyMapComponent
                                 isMarkerShown
-                                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyCf0HtJT5cs0kv7IKcMgGTfEidQ-BnN8qo"
+                                googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyAuot4eH_biNsh-pXugBKDhEtQHP13u_oQ"
                                 loadingElement={<div style={{ height: `100%` }} />}
                                 containerElement={<div style={{ height: `100%` }} />}
                                 mapElement={<div style={{ height: `100%` }} />}
