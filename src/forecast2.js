@@ -6,7 +6,6 @@ class Forecast2 extends React.Component {
         const { temperature, humidity, pressure, icon, summary, visibility, windSpeed } = this.props.data;
         let date = new Date(this.props.data.time * 1000);
         let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        let year = date.getFullYear();
         let month = months[date.getMonth()];
         let day = date.getDate();
         let hour = date.getHours();
@@ -20,7 +19,6 @@ class Forecast2 extends React.Component {
         else {
             time = hour + " am";
         }
-        console.log(year, month, day, hour)
 
         return (
             <div id="fcard">

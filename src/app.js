@@ -92,31 +92,38 @@ class App extends Component {
             .then(res => res.json())
             .then(data => {
                 //console.log(data);
-                this.setState({ weather_data: data,
-                     isloading: false,
-                     currforecast: data.daily.data
-                    })
+                this.setState({
+                    weather_data: data,
+                    isloading: false,
+                    currforecast: data.daily.data
+                })
             })
     }
 
     handelClick(city, country) {
-        this.setState({ isCordFetched: false, isloading: true });
-        fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + city + "," + country + "&key=AIzaSyAuot4eH_biNsh-pXugBKDhEtQHP13u_oQ")
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                this.setState({
-                    geocoding: data,
-                    currLat: data.results[0].geometry.location.lat,
-                    currLong: data.results[0].geometry.location.lng,
-                    city: data.results[0].address_components[0].long_name,
-                    country: data.results[0].address_components[data.results[0].address_components.length - 1].long_name,
-                    isCordFetched: true
+        if (city.length !== 0 && country.length !== 0) {
+            this.setState({ isCordFetched: false, isloading: true });
+            fetch("https://maps.googleapis.com/maps/api/geocode/json?address=" + city + "," + country + "&key=AIzaSyAuot4eH_biNsh-pXugBKDhEtQHP13u_oQ")
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    this.setState({
+                        geocoding: data,
+                        currLat: data.results[0].geometry.location.lat,
+                        currLong: data.results[0].geometry.location.lng,
+                        city: data.results[0].address_components[0].long_name,
+                        country: data.results[0].address_components[data.results[0].address_components.length - 1].long_name,
+                        isCordFetched: true
+                    })
+                    if (this.state.isCordFetched === true) {
+                        this.getWeather();
+                    }
                 })
-                if (this.state.isCordFetched === true) {
-                    this.getWeather();
-                }
-            })
+        }
+        else {
+            console.log("enter both");
+            alert("Please enter both City and country");
+        }
     }
     handelGps() {
         this.geoLocate();
@@ -125,11 +132,11 @@ class App extends Component {
 
     handleforecast(e) {
         if (e === 1) {
-            this.setState({ currforecast: this.state.weather_data.daily.data,forecastButtonValue:1 })
+            this.setState({ currforecast: this.state.weather_data.daily.data, forecastButtonValue: 1 })
             //console.log(this.state.currforecast);
         }
         else if (e === 2) {
-            this.setState({ currforecast: this.state.weather_data.hourly.data,forecastButtonValue: 2 })
+            this.setState({ currforecast: this.state.weather_data.hourly.data, forecastButtonValue: 2 })
             //console.log(this.state.currforecast);
         }
     }
@@ -143,8 +150,8 @@ class App extends Component {
                             <Forecast1 key={index} data={data} />
                         )
                     }
-                    else{
-                        return(
+                    else {
+                        return (
                             null
                         )
                     }
@@ -162,8 +169,8 @@ class App extends Component {
                             <Forecast2 key={index} data={data} />
                         )
                     }
-                    else{
-                        return(
+                    else {
+                        return (
                             null
                         )
                     }
@@ -201,11 +208,49 @@ class App extends Component {
                         </div>
                     </div>
                     <div id="fbuttons">
-                        <button value={1} onClick={() => this.handleforecast(1)}>Daily</button>
-                        <button value={2} onClick={() => this.handleforecast(2)}>Hourly</button>
+                        {this.state.forecastButtonValue === 1 ?
+                            <div id="rendbut">
+                                <button style={{
+                                    color: "red",
+                                    transform: "scale(1.3)",
+                                    transitionDuration: ".5s",
+                                    border: "none",
+                                    background: "none",
+                                    padding: "10px",
+                                    fontSize: "25px"
+                                }} value={1} onClick={() => this.handleforecast(1)}>Daily</button>
+                                <button style={{
+                                    color: "white",
+                                    border: "none",
+                                    background: "none",
+                                    padding: "10px",
+                                    fontSize: "25px"
+                                }} value={2} onClick={() => this.handleforecast(2)}>Hourly</button>
+                            </div>
+
+                            :
+                            <div id="rendbut">
+                                <button style={{
+                                    color: "white",
+                                    border: "none",
+                                    background: "none",
+                                    padding: "10px",
+                                    fontSize: "25px"
+                                }} value={1} onClick={() => this.handleforecast(1)}>Daily</button>
+                                <button style={{
+                                    color: "red",
+                                    transform: "scale(1.3)",
+                                    transitionDuration: ".5s",
+                                    border: "none",
+                                    background: "none",
+                                    padding: "10px",
+                                    fontSize: "25px"
+                                }} value={2} onClick={() => this.handleforecast(2)}>Hourly</button>
+                            </div>
+                        }
                     </div>
                     <div id="forecastsec">
-                        {this.state.forecastButtonValue===1?this.renderCard1():this.renderCard2()}
+                        {this.state.forecastButtonValue === 1 ? this.renderCard1() : this.renderCard2()}
                     </div>
                 </div>
             </React.Fragment>

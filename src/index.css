@@ -134,6 +134,7 @@
     margin: 40px 0px 0px 0px;
 }
 #fbuttons>button{
+    color:white;
     border: none;
     background: none;
     padding: 10px;
@@ -150,7 +151,7 @@
 }
 #fcard{
     background-color: rgba(32, 32, 32, 0.418);
-    padding: 15px;
+    padding: 10px;
     font-family: 'Open Sans Condensed', sans-serif;
     font-size: 20px;
     margin: 10px;
@@ -159,13 +160,17 @@
 }
 #fcard>div{
     padding: 10px;
+    letter-spacing: 1px;
 }
 .flex{
     display: flex;
     justify-content: space-between;
 }
+#temp{
+    padding-bottom: 15px;
+}
 #ficon{
-    text-align: center;
+    padding: 12px;
 }
 /*Loader*/
 .spinner {

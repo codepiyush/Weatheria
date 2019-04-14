@@ -12,7 +12,7 @@ class Navbar extends React.Component {
 
     handelChange(event){
         this.setState( {
-                    [event.target.name]:event.target.value
+                    [event.target.name]:event.target.value.trim()
         })
     }
 
@@ -29,8 +29,8 @@ class Navbar extends React.Component {
                 </div>
                 </div>  
                 <div id="inputfield">
-                    <input type="text" name="city" placeholder='City' onChange={this.handelChange}/>
-                    <input type="text" name="country" placeholder='Country' onChange={this.handelChange}/>
+                    <input type="text" name="city" placeholder='City' onChange={this.handelChange} />
+                    <input type="text" name="country" placeholder='Country' onChange={this.handelChange} />
                     <button id="search" onClick={() => this.props.handelClick(this.state.city, this.state.country)}>Search</button>
                     <button id="gps" onClick={this.props.handelGps}><img src={require("./images/gps.png")} alt="gps" height={40} ></img></button>
                 </div>

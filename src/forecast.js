@@ -6,7 +6,6 @@ class Forecast1 extends React.Component {
         const { temperatureHigh, temperatureLow, humidity, pressure, icon, summary, visibility, windSpeed } = this.props.data;
         let date = new Date(this.props.data.time * 1000);
         let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-        let year = date.getFullYear();
         let month = months[date.getMonth()];
         let day = date.getDate();
         let hour = date.getHours();
@@ -20,7 +19,6 @@ class Forecast1 extends React.Component {
         else {
             time = hour + " am";
         }
-        console.log(year, month, day, hour)
 
         return (
             <div id="fcard">
@@ -32,23 +30,25 @@ class Forecast1 extends React.Component {
                         {time}
                     </div>
                 </div>
-                <hr/>
-                <div id="">
+                <hr />
+                <div >
                     <div className="flex" id="temp">
                         <div>
-                            <p>High</p><p>{temperatureHigh}</p>
+                            <p>High</p><p>{temperatureHigh}&deg;C</p>
+                        </div>
+                        <div id="ficon">
+                            <img src={require("./images/" + icon + ".png")} alt="icon" height={35} widht={35} />
                         </div>
                         <div>
-                            <p>Low</p><p>{temperatureLow}</p>
+                            <p>Low</p><p>{temperatureLow}&deg;C</p>
                         </div>
-                    </div>
-                    <img src={require("./images/" + icon + ".png")} alt="icon" id="ficon" height={30} widht={30} />
+                    </div >
                     <p>Humidity :  <span>{Math.round(humidity * 100)}</span>%</p>
                     <p>Pressure:   <span>{pressure}</span> pa</p>
                     <p>Visibility: <span>{visibility}</span></p>
                     <p>Wind Speed:   <span>{windSpeed}</span> m/s</p>
                 </div>
-                <hr/>
+                <hr />
                 {summary}
             </div>
         )
